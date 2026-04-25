@@ -118,6 +118,31 @@
       height: 100%;
       z-index: 1;
     }
+
+    #bg-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero h2, .hero p, .btn, .countdown {
+  position: relative;
+  z-index: 2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+}
   </style>
 </head>
 
@@ -134,6 +159,9 @@
 </header>
 
 <section class="hero">
+  <video autoplay muted loop id="bg-video">
+  <source src="video.mp4" type="video/mp4">
+</video>
   <canvas id="particles"></canvas>
 
   <h2 data-aos="fade-up">JUDUL KAMU (TETAP)</h2>
