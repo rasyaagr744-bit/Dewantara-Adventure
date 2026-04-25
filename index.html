@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dewantara Artha Summit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #020617;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #38bdf8;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h2 {
+      font-size: 55px;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 600px;
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Countdown */
+    .countdown {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 2;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    section {
+      padding: 100px 50px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+    }
+
+    /* Particle canvas */
+    #particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Dewantara Artha Summit</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <canvas id="particles"></canvas>
+
+  <h2 data-aos="fade-up">JUDUL KAMU (TETAP)</h2>
+  <p data-aos="fade-up">DESKRIPSI KAMU (NGGAK DIUBAH)</p>
+
+  <!-- Countdown -->
+  <div class="countdown" id="countdown">
+    <div class="time-box"><span id="days">0</span><br>Hari</div>
+    <div class="time-box"><span id="hours">0</span><br>Jam</div>
+    <div class="time-box"><span id="minutes">0</span><br>Menit</div>
+    <div class="time-box"><span id="seconds">0</span><br>Detik</div>
+  </div>
+
+  <!-- Button ke Google Form -->
+  <a href="LINK_GOOGLE_FORM_KAMU" target="_blank">
+    <button class="btn">Daftar Sekarang</button>
+  </a>
+</section>
+
+<section id="about">
+  <h2>Tentang</h2>
+  <div class="card">
+    <p>ISI KONTEN KAMU (copy dari lama)</p>
+  </div>
+</section>
+
+<section id="agenda">
+  <h2>Agenda</h2>
+  <div class="card">
+    <p>ISI KONTEN KAMU</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>ISI KONTAK KAMU</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Dewantara Artha Summit</p>
+</footer>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<!-- Countdown Script -->
+<script>
+  const targetDate = new Date("2026-12-31 00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const gap = targetDate - now;
+
+    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+    const h = Math.floor((gap / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((gap / (1000 * 60)) % 60);
+    const s = Math.floor((gap / 1000) % 60);
+
+    document.getElementById("days").innerText = d;
+    document.getElementById("hours").innerText = h;
+    document.getElementById("minutes").innerText = m;
+    document.getElementById("seconds").innerText = s;
+  }, 1000);
+</script>
+
+<!-- Particle Effect -->
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<100;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    d: Math.random()*1
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  update();
+}
+
+function update(){
+  particles.forEach(p=>{
+    p.y += p.d;
+    if(p.y > canvas.height){
+      p.y = 0;
+    }
+  });
+}
+
+setInterval(draw,30);
+</script>
+
+</body>
+</html>
